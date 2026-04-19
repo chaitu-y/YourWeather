@@ -48,6 +48,12 @@ struct CityView: View {
         } message: {
             Text(viewModel.errorMessage ?? "Something went wrong. Try again later.")
         }
+        
+        .refreshable {
+            Task {
+                await viewModel.handleInitialLoad()
+            }
+        }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button {
