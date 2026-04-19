@@ -1,5 +1,5 @@
 //
-//  MockWeatherService.swift
+//  MockResponses.swift
 //  YourWeather
 //
 //  Created by chaitu on 4/19/26.
