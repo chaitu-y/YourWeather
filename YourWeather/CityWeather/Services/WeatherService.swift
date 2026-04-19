@@ -8,7 +8,7 @@
 import Foundation
 
 protocol WeatherServiceProtocol {
-    func fetchWeather(lat: Double, lon: Double) async throws -> WeatherResponse
+    func fetchWeather(latitude: Double, longitude: Double) async throws -> WeatherResponse
     func fetchCoordinates(for cityName: String) async throws -> [GeocodingResponse]
 }
 
@@ -21,11 +21,11 @@ final class WeatherService: WeatherServiceProtocol {
         self.apiKey = apiKey
     }
 
-    func fetchWeather(lat: Double, lon: Double) async throws -> WeatherResponse {
+    func fetchWeather(latitude: Double, longitude: Double) async throws -> WeatherResponse {
         var components = URLComponents(string: "https://api.openweathermap.org/data/2.5/weather")!
         components.queryItems = [
-            URLQueryItem(name: "lat", value: "\(lat)"),
-            URLQueryItem(name: "lon", value: "\(lon)"),
+            URLQueryItem(name: "lat", value: "\(latitude)"),
+            URLQueryItem(name: "lon", value: "\(longitude)"),
             URLQueryItem(name: "units", value: "imperial"),
             URLQueryItem(name: "appid", value: apiKey)
         ]

@@ -29,6 +29,10 @@ class LocationHandler: NSObject, CLLocationManagerDelegate, LocationManagerProto
     var locationContinuation: CheckedContinuation<CLLocation, Error>?
     var permissionContinuation: CheckedContinuation<UserLocationPermission, Error>?
     
+    var isPermissionDenied: Bool {
+        checkLocationPermission() == .restrictedOrDenied
+    }
+    
     override init() {
         super.init()
         setupLocationManager()

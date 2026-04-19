@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CityView: View {
-    var viewModel: CityViewModel
+    @Bindable var viewModel: CityViewModel
     
     var body: some View {
         ScrollView {
@@ -29,12 +29,6 @@ struct CityView: View {
                     } else if let weather = city.weather {
                         weatherContent(weather)
                     }
-
-                    if let error = viewModel.errorMessage {
-                        Text(error)
-                            .foregroundStyle(.red)
-                            .font(.callout)
-                    }
                 }
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -47,10 +41,12 @@ struct CityView: View {
                 .padding(.top, 100)
             }
         }
-        .onAppear{
-            Task {
-                await viewModel.handleInitialLoad()
+        .alert("Error", isPresented: $viewModel.showAlert) {
+            Button("OK") {
+                viewModel.resetError()
             }
+        } message: {
+            Text(viewModel.errorMessage ?? "Something went wrong. Try again later.")
         }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
