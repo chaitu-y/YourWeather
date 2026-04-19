@@ -62,6 +62,9 @@ final class FetchWeatherUseCase: FetchWeatherUseCaseProtocol {
         // Fetch weather data using coordinates
         let weatherResponse = try await service.fetchWeather(latitude: latitude, longitude: longitude)
         
+        //Clear any saved city when using current location
+        repository.clearSavedCity()
+        
         // Create city with weather response
         let city = City(
             name: weatherResponse.name,

@@ -16,7 +16,9 @@ class AppCoordinator: Coordinating {
     private let cityViewModel = CityViewModel()
     
     func setupRootView(for window: UIWindow) {
-        
+        cityViewModel.onSearchTapped = { [weak self] in
+            self?.showCitySearch()
+        }
         let rootViewController = UIHostingController(rootView: CityView(viewModel: cityViewModel))
         rootViewController.title = "Weather"
         navigationController.setViewControllers([rootViewController], animated: false)
@@ -24,5 +26,18 @@ class AppCoordinator: Coordinating {
         window.makeKeyAndVisible()
     }
     
+    private func showCitySearch() {
+        let searchViewModel = CitySearchViewModel()
+        searchViewModel.onCitySelected = { [weak self] city in
+            self?.dismiss(animated: true)
+            Task { @MainActor in
+                await self?.cityViewModel.selectCity(city)
+            }
+        }
+
+        let searchView = CitySearchView(viewModel: searchViewModel)
+        let hostingController = UIHostingController(rootView: searchView)
+        present(hostingController, animated: true)
+    }
     
 }
