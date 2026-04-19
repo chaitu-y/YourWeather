@@ -1,0 +1,24 @@
+//
+//  AppCoordinator.swift
+//  YourWeather
+//
+//  Created by chaitu on 4/19/26.
+//
+
+import UIKit
+import SwiftUI
+
+class AppCoordinator: Coordinating {
+    
+    var navigationController =  UINavigationController()
+    var childCoordinators: [any Coordinating] = []
+    
+    func setupRootView(for window: UIWindow) {
+        let rootViewController = UIViewController()
+        rootViewController.title = "Weather"
+        navigationController.setViewControllers([rootViewController], animated: false)
+        window.rootViewController = navigationController
+    }
+    
+    
+}
