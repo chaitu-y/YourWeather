@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CityView: View {
+    var viewModel: CityViewModel
+    
     var body: some View {
         Text("City View")
     }

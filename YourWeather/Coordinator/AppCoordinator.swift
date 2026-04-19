@@ -13,9 +13,11 @@ class AppCoordinator: Coordinating {
     
     var navigationController =  UINavigationController()
     var childCoordinators: [any Coordinating] = []
+    private let cityViewModel = CityViewModel()
     
     func setupRootView(for window: UIWindow) {
-        let rootViewController = UIHostingController(rootView: CityView())
+        
+        let rootViewController = UIHostingController(rootView: CityView(viewModel: cityViewModel))
         rootViewController.title = "Your Weather"
         navigationController.setViewControllers([rootViewController], animated: false)
         window.rootViewController = navigationController
