@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 
+@MainActor
 class AppCoordinator: Coordinating {
     
     var navigationController =  UINavigationController()
@@ -15,9 +16,10 @@ class AppCoordinator: Coordinating {
     
     func setupRootView(for window: UIWindow) {
         let rootViewController = UIViewController()
-        rootViewController.title = "Weather"
+        rootViewController.title = "Your Weather"
         navigationController.setViewControllers([rootViewController], animated: false)
         window.rootViewController = navigationController
+        window.makeKeyAndVisible()
     }
     
     
