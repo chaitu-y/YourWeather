@@ -18,7 +18,7 @@ class AppCoordinator: Coordinating {
     func setupRootView(for window: UIWindow) {
         
         let rootViewController = UIHostingController(rootView: CityView(viewModel: cityViewModel))
-        rootViewController.title = "Your Weather"
+        rootViewController.title = "Weather"
         navigationController.setViewControllers([rootViewController], animated: false)
         window.rootViewController = navigationController
         window.makeKeyAndVisible()

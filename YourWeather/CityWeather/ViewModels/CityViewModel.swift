@@ -15,4 +15,16 @@ class CityViewModel {
     var isLoading = false
     var errorMessage: String?
     
+    func handleInitialLoad() async {
+        
+    }
+    
+    func requestPermissionAndFetchWeatherForCurrentLocation() async {
+        
+    }
+    
+    func searchTapped() {
+        
+    }
+    
 }
