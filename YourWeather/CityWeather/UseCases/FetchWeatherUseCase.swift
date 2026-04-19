@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol FetchWeatherUseCaseProtocol {
+protocol FetchWeatherUseCaseProtocol: Sendable {
     func fetchWeatherFor(latitude: Double, longitude: Double) async throws -> WeatherResponse
     func updateWeatherForCity(_ city: City) async throws -> City
     func fetchWeatherForCityAt(latitude: Double, longitude: Double) async throws -> City
