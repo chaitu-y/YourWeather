@@ -16,6 +16,7 @@ class CityViewModel {
     var isLoading = false
     var errorMessage: String?
     var showAlert = false
+    var onSearchTapped: (() -> Void)?
     
     private let fetchWeatherUseCase: FetchWeatherUseCaseProtocol
     private let locationHandler: LocationHandler
@@ -39,11 +40,27 @@ class CityViewModel {
         isLoading = true
         errorMessage = nil
         
+        // load saved city if available
+        do {
+            if let cityWithWeather = try await fetchWeatherUseCase.fetchWeatherForSavedCity() {
+                // load saved city's weather
+                selectedCity = cityWithWeather
+                isLoading = false
+                return
+            }
+        } catch {
+            // No saved city or error loading it, continue to location flow
+        }
+        
         if locationHandler.isPermissionDenied == false {
             await requestPermissionAndFetchWeatherForCurrentLocation()
         }
     }
-    
+}
+
+// MARK: Current location
+
+extension CityViewModel {
     func requestPermissionAndFetchWeatherForCurrentLocation() async {
         do {
             let permission = try await locationHandler.requestPermission()
@@ -98,9 +115,27 @@ class CityViewModel {
         
         isLoading = false
     }
-    
+}
+
+// MARK: City search
+extension CityViewModel {
     func searchTapped() {
-        
+        onSearchTapped?()
     }
     
+    func selectCity(_ city: City) async {
+        isLoading = true
+        errorMessage = nil
+
+        do {
+            // Fetch weather and save city
+            let cityWithWeather = try await fetchWeatherUseCase.updateWeatherForCity(city)
+            selectedCity = cityWithWeather
+        } catch {
+            errorMessage = "Failed to fetch weather data."
+            showAlert = true
+        }
+
+        isLoading = false
+    }
 }
