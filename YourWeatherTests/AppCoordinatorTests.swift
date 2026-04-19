@@ -20,7 +20,7 @@ struct AppCoordinatorTests {
         let coordinator = AppCoordinator()
         coordinator.setupRootView(for: UIWindow())
         #expect(coordinator.navigationController.viewControllers.count == 1)
-        #expect(coordinator.navigationController.viewControllers.first?.title == "Your Weather")
+        #expect(coordinator.navigationController.viewControllers.first?.title == "Weather")
     }
     
     @Test func pushViewController() {

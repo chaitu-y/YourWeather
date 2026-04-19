@@ -15,7 +15,7 @@ protocol LocationManagerProtocol: AnyObject {
     var permissionContinuation: CheckedContinuation<UserLocationPermission, Error>? { get set }
     var authorizationStatus: CLAuthorizationStatus { get set }
 
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager)
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
 }
@@ -105,9 +105,9 @@ class LocationHandler: NSObject, CLLocationManagerDelegate, LocationManagerProto
     }
 
     // Delegate method called when authorization status changes
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         var locationPermissionValue: UserLocationPermission = .notDetermined
-        switch status {
+        switch manager.authorizationStatus {
         case .notDetermined:
             locationPermissionValue = .notDetermined
             authorizationStatus = .notDetermined
