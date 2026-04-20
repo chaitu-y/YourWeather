@@ -16,9 +16,11 @@ final class WeatherService: WeatherServiceProtocol {
     private let session: URLSession
     private let apiKey: String
     
-    init(session: URLSession = .shared, apiKey: String = "8a51557140220a4e05f3a8e34c893522") {
+    private let fakeKey = "000000000000000000000000000"
+    
+    init(session: URLSession = .shared) {
         self.session = session
-        self.apiKey = apiKey
+        self.apiKey = Bundle.main.object(forInfoDictionaryKey: "SETTING_KEY") as? String ?? fakeKey
     }
 
     func fetchWeather(latitude: Double, longitude: Double) async throws -> WeatherResponse {

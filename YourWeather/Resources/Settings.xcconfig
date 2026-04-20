@@ -1,0 +1,11 @@
+//
+//  Settings.xcconfig
+//  YourWeather
+//
+//  Created by chaitu on 4/20/26.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
+
+SETTING_KEY = 8a51557140220a4e05f3a8e34c893522

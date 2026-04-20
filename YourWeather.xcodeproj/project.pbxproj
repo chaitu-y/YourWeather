@@ -284,6 +284,8 @@
 /* Begin XCBuildConfiguration section */
 		50C6AC1A2F95280A0021B92A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 50C6ABF22F9528090021B92A /* YourWeather */;
+			baseConfigurationReferenceRelativePath = Resources/Settings.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -317,6 +319,8 @@
 		};
 		50C6AC1B2F95280A0021B92A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 50C6ABF22F9528090021B92A /* YourWeather */;
+			baseConfigurationReferenceRelativePath = Resources/Settings.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
