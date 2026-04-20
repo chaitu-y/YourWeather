@@ -170,13 +170,13 @@ enum UserLocationPermission: Int, Codable {
     var description: String {
         switch self {
         case .notDetermined:
-            return "Not Determined"
+            return String(localized: "Not Determined")
         case .authorizeOnce:
-            return "Allow Once"
+            return String(localized: "Allow Once")
         case .authorizeWhenInUse:
-            return "Allow While Using App"
+            return String(localized: "Allow While Using App")
         case .restrictedOrDenied:
-            return "Don't Allow"
+            return String(localized: "Don't Allow")
         }
     }
 }
@@ -188,9 +188,9 @@ enum LocationError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .notAuthorized:
-            return "Location access is not authorized. Please enable it in Settings."
+            return String(localized: "Location access is not authorized. Please enable it in Settings.")
         case .locationUnavailable:
-            return "Unable to retrieve your location."
+            return String(localized: "Unable to retrieve your location.")
         }
     }
 }

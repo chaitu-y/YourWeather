@@ -148,7 +148,7 @@ final class CityViewController: UIViewController {
         label.textAlignment = .center
         label.font = .boldSystemFont(ofSize: 22)
         label.textColor = .label
-        label.text = "No City Selected"
+        label.text = String(localized: "No City Selected")
         return label
     }()
     
@@ -159,7 +159,7 @@ final class CityViewController: UIViewController {
         label.font = .systemFont(ofSize: 15)
         label.textColor = .secondaryLabel
         label.numberOfLines = 0
-        label.text = "Tap the search button to find a city."
+        label.text = String(localized: "Tap the search button to find a city.")
         return label
     }()
     
@@ -403,12 +403,12 @@ final class CityViewController: UIViewController {
         isShowingAlert = true
         
         let alert = UIAlertController(
-            title: "Error",
+            title: String(localized: "Error"),
             message: errorMessage,
             preferredStyle: .alert
         )
         
-        alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+        alert.addAction(UIAlertAction(title: String(localized: "OK"), style: .default) { [weak self] _ in
             self?.isShowingAlert = false
             self?.viewModel.resetError()
         })
@@ -419,7 +419,7 @@ final class CityViewController: UIViewController {
     private func updateWeatherContent(_ weather: CityWeather) {
         temperatureLabel.text = "\(Int(weather.temperature))°F"
         descriptionLabel.text = weather.description.capitalized
-        feelsLikeLabel.text = "Feels like \(Int(weather.feelsLike))°F"
+        feelsLikeLabel.text = String(localized: "Feels like \(Int(weather.feelsLike))°F")
         
         // Load weather icon
         if let url = URL(string: "https://openweathermap.org/img/wn/\(weather.icon)@2x.png") {
@@ -435,13 +435,13 @@ final class CityViewController: UIViewController {
         detailsGridView.subviews.forEach { $0.removeFromSuperview() }
         
         let details = [
-            ("thermometer.low", "Min", "\(Int(weather.tempMin))°F"),
-            ("thermometer.high", "Max", "\(Int(weather.tempMax))°F"),
-            ("humidity", "Humidity", "\(weather.humidity)%"),
-            ("gauge.with.dots.needle.33percent", "Pressure", "\(weather.pressure) hPa"),
-            ("wind", "Wind", String(format: "%.1f miles/hour", weather.windSpeed)),
-            ("cloud", "Clouds", "\(weather.cloudiness)%"),
-            ("cloud.rain", "Rain", "\(weather.rain ?? 0) mm/h")
+            ("thermometer.low", String(localized: "Min"), "\(Int(weather.tempMin))°F"),
+            ("thermometer.high", String(localized: "Max"), "\(Int(weather.tempMax))°F"),
+            ("humidity", String(localized: "Humidity"), "\(weather.humidity)%"),
+            ("gauge.with.dots.needle.33percent", String(localized: "Pressure"), "\(weather.pressure) hPa"),
+            ("wind", String(localized: "Wind"), String(format: "%.1f miles/hour", weather.windSpeed)),
+            ("cloud", String(localized: "Clouds"), "\(weather.cloudiness)%"),
+            ("cloud.rain", String(localized: "Rain"), "\(weather.rain ?? 0) mm/h")
         ]
         
         let columns = 2

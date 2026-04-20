@@ -57,7 +57,7 @@ class CitySearchViewModel  {
         } catch is CancellationError {
             return
         } catch {
-            errorMessage = "Failed to search cities. Please try again."
+            errorMessage = String(localized: "Failed to search cities. Please try again.")
         }
 
         isLoading = false

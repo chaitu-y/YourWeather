@@ -71,7 +71,7 @@ extension CityViewModel {
                 await fetchWeatherForCurrentLocation()
                 
             case .restrictedOrDenied:
-                errorMessage = "Location access denied. Please enable it in Settings."
+                errorMessage = String(localized: "Location access denied. Please enable it in Settings.")
                 showAlert = true
                 isLoading = false
                 
@@ -80,7 +80,7 @@ extension CityViewModel {
             }
         } catch {
             // Permission request failed
-            errorMessage = "Failed to request location permission."
+            errorMessage = String(localized: "Failed to request location permission.")
             showAlert = true
             isLoading = false
         }
@@ -109,7 +109,7 @@ extension CityViewModel {
             
         } catch {
             // Handle other errors
-            errorMessage = "Failed to fetch weather for your location."
+            errorMessage = String(localized: "Failed to fetch weather for your location.")
             showAlert = true
         }
         
@@ -132,7 +132,7 @@ extension CityViewModel {
             let cityWithWeather = try await fetchWeatherUseCase.updateWeatherForCity(city)
             selectedCity = cityWithWeather
         } catch {
-            errorMessage = "Failed to fetch weather data."
+            errorMessage = String(localized: "Failed to fetch weather data.")
             showAlert = true
         }
 
