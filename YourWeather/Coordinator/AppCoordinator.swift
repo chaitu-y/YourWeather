@@ -19,7 +19,7 @@ class AppCoordinator: Coordinating {
         cityViewModel.onSearchTapped = { [weak self] in
             self?.showCitySearch()
         }
-        let rootViewController = UIHostingController(rootView: CityView(viewModel: cityViewModel))
+        let rootViewController = CityViewController(viewModel: cityViewModel)
         rootViewController.title = "Weather"
         navigationController.setViewControllers([rootViewController], animated: false)
         window.rootViewController = navigationController

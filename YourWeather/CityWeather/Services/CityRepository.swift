@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol CityRepositoryProtocol: Sendable {
+protocol CityRepositoryProtocol {
     func saveCity(_ city: City) throws
     func getSavedCity() throws -> City?
     func clearSavedCity()
